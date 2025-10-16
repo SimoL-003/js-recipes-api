@@ -101,6 +101,7 @@ form select {
     border: 1px solid var(--card-border);
     color: var(--text-primary);
     text-align: center;
+    font-size: 14px;
 }
 
 form select:hover {
@@ -118,6 +119,7 @@ form select:focus-visible {
 }
 
 form button {
+    font-size: 14px;
     border-radius: 10px;
     padding: 8px 16px;
     background-color: var(--accent);
@@ -130,6 +132,10 @@ form button {
 .cards-container {
     padding-top: 40px;
     padding-bottom: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
 }
 
 .card {
