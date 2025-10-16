@@ -178,6 +178,9 @@ form button {
 .card__text .tags {
     padding-bottom: 8px;
     text-transform: capitalize;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .card__text .difficulty {
