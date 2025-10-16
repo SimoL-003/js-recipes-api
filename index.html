@@ -24,46 +24,60 @@
         <div class="container">
             <h1>My Favourite Recipes</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid ab facilis reiciendis consequuntur itaque amet vitae nesciunt fugiat quia provident doloremque ullam ut porro, explicabo mollitia ratione aperiam soluta omnis.</p>
-            <form class="filters">
-                <label for="tags">Tags</label>
-                <select name="tags"
-                        id="tags">
-                    <option value="Qualsiasi">Qualsiasi</option>
-                </select>
-                <label for="difficulty">Difficulty</label>
-                <select name="difficulty"
-                        id="difficulty">
-                    <option value="Qualsiasi">Qualsiasi</option>
-                </select>
-                <label for="meal-type">Meal type</label>
-                <select name="meal-type"
-                        id="meal-type">
-                    <option value="Qualsiasi">Qualsiasi</option>
-                </select>
-                <label for="cuisine">Cuisine</label>
-                <select name="cuisine"
-                        id="cuisine">
-                    <option value="Qualsiasi">Qualsiasi</option>
-                </select>
+            <form class="filters-bar">
+                <div>
+                    <label for="tags">Tags</label>
+                    <select name="tags"
+                            id="tags"
+                            disabled>
+                        <option value="Qualsiasi">Tags</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="difficulty">Difficulty</label>
+                    <select name="difficulty"
+                            id="difficulty"
+                            disabled>
+                        <option value="Qualsiasi">Difficulty</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="meal-type">Meal type</label>
+                    <select name="meal-type"
+                            id="meal-type"
+                            disabled>
+                        <option value="Qualsiasi">Meal type</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="cuisine">Cuisine</label>
+                    <select name="cuisine"
+                            id="cuisine"
+                            disabled>
+                        <option value="Qualsiasi">Cuisine</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="submit">Applica filtri</button>
+                </div>
             </form>
             <div class="cards-container">
                 <div class="card">
-                    <div class="card--img"></div>
-                    <div class="card--text">
+                    <div class="card__img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqaA54W92lfk1aycisG6TR4Mw8s02QHJJ18mcg11vGycft7gprrvzpsTkAXZsXze-xH9XwbQ"
+                             alt="#">
+                    </div>
+                    <div class="card__text">
                         <h3>Nome ricetta</h3>
+
                         <div class="tags">
                             <span class="badge">prova</span>
                         </div>
-                        <div class="cuisine">
-                            <span class="badge">prova</span>
-                        </div>
-                        <div class="meal-type">
-                            <span class="badge">prova</span>
-                        </div>
                         <div class="difficulty">
-                            <span class="badge">prova</span>
+                            <span class="badge easy">prova</span>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
