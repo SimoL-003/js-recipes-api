@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>My Recipes</title>
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          href="./css/style.css">
+    <link rel="stylesheet"
+          href="./css/responsive.css">
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <h1>My Favourite Recipes</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid ab facilis reiciendis consequuntur itaque amet vitae nesciunt fugiat quia provident doloremque ullam ut porro, explicabo mollitia ratione aperiam soluta omnis.</p>
+            <form class="filters">
+                <label for="tags">Tags</label>
+                <select name="tags"
+                        id="tags">
+                    <option value="Qualsiasi">Qualsiasi</option>
+                </select>
+                <label for="difficulty">Difficulty</label>
+                <select name="difficulty"
+                        id="difficulty">
+                    <option value="Qualsiasi">Qualsiasi</option>
+                </select>
+                <label for="meal-type">Meal type</label>
+                <select name="meal-type"
+                        id="meal-type">
+                    <option value="Qualsiasi">Qualsiasi</option>
+                </select>
+                <label for="cuisine">Cuisine</label>
+                <select name="cuisine"
+                        id="cuisine">
+                    <option value="Qualsiasi">Qualsiasi</option>
+                </select>
+            </form>
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card--img"></div>
+                    <div class="card--text">
+                        <h3>Nome ricetta</h3>
+                        <div class="tags">
+                            <span class="badge">prova</span>
+                        </div>
+                        <div class="cuisine">
+                            <span class="badge">prova</span>
+                        </div>
+                        <div class="meal-type">
+                            <span class="badge">prova</span>
+                        </div>
+                        <div class="difficulty">
+                            <span class="badge">prova</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
