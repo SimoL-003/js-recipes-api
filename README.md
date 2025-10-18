@@ -1,5 +1,3 @@
-[https://simol-003.github.io/js-recipes-api/](https://simol-003.github.io/js-recipes-api/)
-
 # Recipe Filter App
 
 ## Italiano
