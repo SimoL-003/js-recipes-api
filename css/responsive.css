@@ -1,6 +1,6 @@
 @media screen and (min-width: 576px) {
-    .card {
-        width: 45%;
+    .cards-container {
+        grid-template-columns: 1fr 1fr;
     }
 }
 
@@ -25,10 +25,6 @@
     form select,
     form button {
         font-size: 15px;
-    }
-
-    .card {
-        width: 45%;
     }
 
     .card__text h3 {
@@ -67,12 +63,8 @@
     }
 
     .cards-container {
+        grid-template-columns: 1fr 1fr 1fr;
         gap: 24px;
-    }
-
-    .card {
-        width: 31%;
-        max-width: 320px;
     }
 
     .card__text h3 {
