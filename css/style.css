@@ -108,6 +108,7 @@ form select {
 form select:hover {
     background-color: var(--accent-light);
     border-color: var(--accent);
+    cursor: pointer;
 }
 
 form select:active {
@@ -125,13 +126,29 @@ form button {
     padding: 8px 16px;
     background-color: var(--accent);
     border: none;
-    color: var(--card-bg);
     cursor: pointer;
+}
+
+form button.submit {
+    color: var(--card-bg);
+    background-color: var(--accent);
+
+}
+
+form button.submit:hover {
+    background-color: var(--accent-light);
+    color: var(--text-primary);
+
 }
 
 form button.reset {
     background-color: var(--accent-light);
     color: var(--text-primary);
+}
+
+form button.reset:hover {
+    color: var(--card-bg);
+    background-color: var(--accent);
 }
 
 /* Recipe card */
@@ -143,9 +160,6 @@ form button.reset {
     grid-template-columns: 1fr;
     justify-items: center;
     gap: 16px;
-    /* flex-wrap: wrap;
-    gap: 16px;
-    justify-content: space-between; */
 }
 
 .card {
