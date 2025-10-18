@@ -16,7 +16,6 @@ axios
       const curRecipe = resp.data.recipes[i];
       const { tags, mealType, cuisine } = curRecipe;
 
-      // TAG
       // Array contenente tutti i tag
       for (let ii = 0; ii < tags.length; ii++) {
         const curTag = tags[ii];
@@ -25,15 +24,6 @@ axios
         }
       }
 
-      // Opzioni del select dei tag
-      let tagsOption = `<option value="">Tags</option>`;
-      tagsArray.sort();
-      for (let ii = 0; ii < tagsArray.length; ii++) {
-        tagsOption += `<option value="${tagsArray[ii]}">${tagsArray[ii]}</option>`;
-      }
-      tagsInputElem.innerHTML = tagsOption;
-
-      // MEAL-TYPE
       // Array contenente tutti i meal-type
       for (let ii = 0; ii < mealType.length; ii++) {
         const curMealType = mealType[ii];
@@ -42,30 +32,40 @@ axios
         }
       }
 
-      // Opzioni del select dei mealType
-      let mealTypeOption = `<option value="">Meal type</option>`;
-      mealTypeArray.sort();
-      for (let ii = 0; ii < mealTypeArray.length; ii++) {
-        mealTypeOption += `<option value="${mealTypeArray[ii]}">${mealTypeArray[ii]}</option>`;
-      }
-      mealTypeInputElem.innerHTML = mealTypeOption;
-
-      // CUISINE
       // Creazione dell'array contenente tutte le cuisine
-      if (!contains(cuisineArray, curRecipe.cuisine)) {
-        cuisineArray.push(curRecipe.cuisine);
+      if (!contains(cuisineArray, cuisine)) {
+        cuisineArray.push(cuisine);
       }
-      // Opzioni del select di cuisine
-      let cuisineOption = `<option value="">Cuisine</option>`;
-      cuisineArray.sort();
-      for (let ii = 0; ii < cuisineArray.length; ii++) {
-        cuisineOption += `<option value="${cuisineArray[ii]}">${cuisineArray[ii]}</option>`;
-      }
-      cuisineInputElem.innerHTML = cuisineOption;
 
-      //   Creazione card tramite funzione
+      // Creazione card tramite funzione
       card += createCard(resp.data.recipes[i]);
     }
+
+    // Opzioni del select dei tag
+    let tagsOption = `<option value="">Tags</option>`;
+    tagsArray.sort();
+    for (let ii = 0; ii < tagsArray.length; ii++) {
+      tagsOption += `<option value="${tagsArray[ii]}">${tagsArray[ii]}</option>`;
+    }
+    tagsInputElem.innerHTML = tagsOption;
+
+    // Opzioni del select dei mealType
+    let mealTypeOption = `<option value="">Meal type</option>`;
+    mealTypeArray.sort();
+    for (let ii = 0; ii < mealTypeArray.length; ii++) {
+      mealTypeOption += `<option value="${mealTypeArray[ii]}">${mealTypeArray[ii]}</option>`;
+    }
+    mealTypeInputElem.innerHTML = mealTypeOption;
+
+    // Opzioni del select di cuisine
+    let cuisineOption = `<option value="">Cuisine</option>`;
+    cuisineArray.sort();
+    for (let ii = 0; ii < cuisineArray.length; ii++) {
+      cuisineOption += `<option value="${cuisineArray[ii]}">${cuisineArray[ii]}</option>`;
+    }
+    cuisineInputElem.innerHTML = cuisineOption;
+
+    // Creazione card
     cardsContainerElem.innerHTML = card;
 
     // Tag filter
@@ -112,12 +112,12 @@ axios
       }
       cardsContainerElem.innerHTML = card;
     });
-  });
 
-// Reset filter
-formElem.addEventListener("reset", function (event) {
-  window.location.reload();
-});
+    // Reset filter
+    formElem.addEventListener("reset", function () {
+      cardsContainerElem.innerHTML = resp.data.recipes.map(createCard).join("");
+    });
+  });
 
 // -------------------- FUNZIONI --------------------
 // Funzione che crea la card (e i badge contenuti al suo interno)
@@ -131,7 +131,7 @@ function createCard(recipe) {
     tagsSpan += `<span class="badge">${curTag}</span>`;
   }
   // Creazione card
-  card = `
+  let card = `
                 <div class="card">
                     <div class="card__img">
                         <img src="${image}"
@@ -151,7 +151,7 @@ function createCard(recipe) {
   return card;
 }
 
-// Funzione per verificare se un elemento è contenuto in un array
+// Funzione per verificare se un elemento è contenuto in un array. LOL ho scoperto dopo che c'è un metodo apposta, ma lascerò questa mia creazione :-)
 function contains(array, elem) {
   for (let i = 0; i < array.length; i++) {
     if (array[i] === elem) {
