@@ -1,5 +1,7 @@
 const cardsContainerElem = document.getElementById("cards-container");
 const tagsInputElem = document.getElementById("tags");
+const mealTypeInputElem = document.getElementById("meal-type");
+const cuisineInputElem = document.getElementById("cuisine");
 const formElem = document.querySelector("form");
 
 axios
@@ -7,30 +9,59 @@ axios
   .then((resp) => {
     let card = "";
     const tagsArray = [];
-    const difficultyArray = [];
     const mealTypeArray = [];
     const cuisineArray = [];
 
     for (let i = 0; i < resp.data.recipes.length; i++) {
       const curRecipe = resp.data.recipes[i];
-      const { tags } = curRecipe;
+      const { tags, mealType, cuisine } = curRecipe;
 
-      // CARD
+      // TAG
+      // Array contenente tutti i tag
       for (let ii = 0; ii < tags.length; ii++) {
         const curTag = tags[ii];
-        // Creazione dell'array contenente tutti i tag
-        if (contains(tagsArray, curTag) === false) {
+        if (!contains(tagsArray, curTag)) {
           tagsArray.push(curTag);
         }
       }
 
-      // Creazione delle opzioni del select dei tag
+      // Opzioni del select dei tag
       let tagsOption = `<option value="">Tags</option>`;
       tagsArray.sort();
       for (let ii = 0; ii < tagsArray.length; ii++) {
         tagsOption += `<option value="${tagsArray[ii]}">${tagsArray[ii]}</option>`;
       }
       tagsInputElem.innerHTML = tagsOption;
+
+      // MEAL-TYPE
+      // Array contenente tutti i meal-type
+      for (let ii = 0; ii < mealType.length; ii++) {
+        const curMealType = mealType[ii];
+        if (!contains(mealTypeArray, curMealType)) {
+          mealTypeArray.push(curMealType);
+        }
+      }
+
+      // Opzioni del select dei mealType
+      let mealTypeOption = `<option value="">Meal type</option>`;
+      mealTypeArray.sort();
+      for (let ii = 0; ii < mealTypeArray.length; ii++) {
+        mealTypeOption += `<option value="${mealTypeArray[ii]}">${mealTypeArray[ii]}</option>`;
+      }
+      mealTypeInputElem.innerHTML = mealTypeOption;
+
+      // CUISINE
+      // Creazione dell'array contenente tutte le cuisine
+      if (!contains(cuisineArray, curRecipe.cuisine)) {
+        cuisineArray.push(curRecipe.cuisine);
+      }
+      // Opzioni del select di cuisine
+      let cuisineOption = `<option value="">Cuisine</option>`;
+      cuisineArray.sort();
+      for (let ii = 0; ii < cuisineArray.length; ii++) {
+        cuisineOption += `<option value="${cuisineArray[ii]}">${cuisineArray[ii]}</option>`;
+      }
+      cuisineInputElem.innerHTML = cuisineOption;
 
       //   Creazione card tramite funzione
       card += createCard(resp.data.recipes[i]);
@@ -40,29 +71,53 @@ axios
     // Tag filter
     formElem.addEventListener("submit", function (event) {
       event.preventDefault();
-      let recipeFiltered = [];
       const tagsInputValue = document.getElementById("tags").value;
-      console.log(tagsInputValue);
-      for (let i = 0; i < resp.data.recipes.length; i++) {
-        const curRecipe = resp.data.recipes[i];
-        if (tagsInputValue && contains(curRecipe.tags, tagsInputValue)) {
-          recipeFiltered.push(curRecipe);
-        }
-      }
-      if (tagsInputValue === "") {
-        recipeFiltered = resp.data.recipes;
-      }
+      const difficultyInputValue = document.getElementById("difficulty").value;
+      const mealTypeInputValue = document.getElementById("meal-type").value;
+      const cuisineInputValue = document.getElementById("cuisine").value;
+
+      let recipeFiltered = [];
+
+      // Filtro
+      recipeFiltered = resp.data.recipes.filter((curRecipe) => {
+        const tagFilter =
+          !tagsInputValue || contains(curRecipe.tags, tagsInputValue);
+        const difficultyFilter =
+          !difficultyInputValue ||
+          curRecipe.difficulty === difficultyInputValue;
+        const mealTypeFilter =
+          !mealTypeInputValue ||
+          contains(curRecipe.mealType, mealTypeInputValue);
+        const cuisineFilter =
+          !cuisineInputValue || curRecipe.cuisine === cuisineInputValue;
+        return tagFilter && difficultyFilter && mealTypeFilter && cuisineFilter;
+      });
       console.log(recipeFiltered);
 
+      // Se non viene selezionato nessun filtro, mostra tutte le ricette
+      if (
+        tagsInputValue +
+          difficultyInputValue +
+          mealTypeInputValue +
+          cuisineInputValue ===
+        ""
+      ) {
+        recipeFiltered = resp.data.recipes;
+      }
+
+      // Creazione card dopo l'applicazione dei filtri
       card = "";
       for (let i = 0; i < recipeFiltered.length; i++) {
         card += createCard(recipeFiltered[i]);
-        console.log(card);
       }
-      console.log(card);
       cardsContainerElem.innerHTML = card;
     });
   });
+
+// Reset filter
+formElem.addEventListener("reset", function (event) {
+  window.location.reload();
+});
 
 // -------------------- FUNZIONI --------------------
 // Funzione che crea la card (e i badge contenuti al suo interno)
