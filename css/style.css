@@ -129,6 +129,11 @@ form button {
     cursor: pointer;
 }
 
+form button.reset {
+    background-color: var(--accent-light);
+    color: var(--text-primary);
+}
+
 /* Recipe card */
 
 .cards-container {

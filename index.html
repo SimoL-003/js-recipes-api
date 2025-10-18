@@ -29,15 +29,17 @@
                     <label for="tags">Tags</label>
                     <select name="tags"
                             id="tags">
-                        <option value="Qualsiasi">Tags</option>
+                        <option value="">Tags</option>
                     </select>
                 </div>
                 <div>
                     <label for="difficulty">Difficulty</label>
                     <select name="difficulty"
-                            id="difficulty"
-                            disabled>
-                        <option value="Qualsiasi">Difficulty</option>
+                            id="difficulty">
+                        <option value="">Difficulty</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
                     </select>
                 </div>
                 <div>
@@ -45,7 +47,7 @@
                     <select name="meal-type"
                             id="meal-type"
                             disabled>
-                        <option value="Qualsiasi">Meal type</option>
+                        <option value="">Meal type</option>
                     </select>
                 </div>
                 <div>
@@ -53,23 +55,25 @@
                     <select name="cuisine"
                             id="cuisine"
                             disabled>
-                        <option value="Qualsiasi">Cuisine</option>
+                        <option value="">Cuisine</option>
                     </select>
                 </div>
                 <div>
-                    <button type="submit">Applica filtri</button>
+                    <button class="reset"
+                            type="reset">Resetta filtri</button>
+                    <button class="submit"
+                            type="submit">Applica filtri</button>
                 </div>
             </form>
             <div id="cards-container"
                  class="cards-container">
-                <div class="card">
+                <!-- <div class="card">
                     <div class="card__img">
                         <img src="#"
                              alt="#">
                     </div>
                     <div class="card__text">
                         <h3>Nome ricetta</h3>
-
                         <div class="tags">
                             <span class="badge">prova</span>
                         </div>
@@ -77,7 +81,7 @@
                             <span class="badge easy">prova</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </main>
